@@ -52,6 +52,8 @@ def read_profile(profiles_dir: str) -> Dict[str, Any]:
     path = os.path.join(profiles_dir, "profiles.yml")
 
     contents = None
+    if not os.path.isfile(path) and os.path.isfile(f"{path[:-4]}.yaml"):
+        path = f"{path[:-4]}.yaml"
     if os.path.isfile(path):
         try:
             contents = load_file_contents(path, strip=False)
